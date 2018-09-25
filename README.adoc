@@ -31,7 +31,7 @@ $ docker run -it -p 9090:9090 -v $HOME/schemas:/schemas lds-memory:latest
 $ curl -I localhost:9090/ping
 ----
 
-The link:docks/linked-data-example.adoc[person-/adreess- example] demonstrate how to configure schemas and use of LDS.
+The link:docs/linked-data-example.adoc[person-/adreess- example] demonstrate how to configure schemas and use of LDS.
 
 
 == Background
