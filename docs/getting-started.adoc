@@ -1,0 +1,82 @@
+:toc:
+:toc-placement: preamble
+:toclevels: 2
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+endif::[]
+
+= Getting started
+
+{empty}
+
+== Pre-requisite
+
+. Requires Zulu JDK 11: https://www.azul.com/downloads/zulu/ (OpenJDK may also be used)
+. Docker CE 18+: https://www.docker.com/community-edition
+
+== Build
+
+All code modules are available at https://github.com/statisticsnorway?utf8=✓&q=linked-data-store[GitHub as separate projects].
+
+The simplest way for getting started is to checkout https://github.com/statisticsnorway/linked-data-store-project[linked-data-store-project].
+
+=== Checkout all modules
+
+. `cd  linked-data-store-project`
+. `./checkout.sh` (git clone all code modules):
+
+
+==== Modules
+
+* https://github.com/statisticsnorway/linked-data-store-core[linked-data-store-core]
+* https://github.com/statisticsnorway/linked-data-store-persistence-provider-api[linked-data-store-persistence-provider-api]
+* https://github.com/statisticsnorway/linked-data-store-persistence-provider-memory[linked-data-store-persistence-provider-memory]
+* https://github.com/statisticsnorway/linked-data-store-persistence-provider-neo4j[linked-data-store-persistence-provider-neo4j]
+* https://github.com/statisticsnorway/linked-data-store-persistence-provider-postgres[linked-data-store-persistence-provider-postgres]
+* https://github.com/statisticsnorway/linked-data-store-docker-memory[linked-data-store-docker-memory]
+* https://github.com/statisticsnorway/linked-data-store-docker-neo4j[linked-data-store-docker-neo4j]
+* https://github.com/statisticsnorway/linked-data-store-docker-postgres[linked-data-store-docker-postgres]
+
+
+==== Build project
+
+`mvn clean install`
+
+
+==== Pull sources and rebase
+
+`./pull.sh`
+
+
+== Run
+
+. `cd linked-data-store-docker-<provider>`
+. `mvn clean install`
+. `java -jar target/linked-data-store-docker-<provider>-0.x-SNAPSHOT.jar`
+. Ping URL: `http://localhost:9090/ping`
+
+
+== Build a docker image
+
+Container images are maintained on Docker Hub.
+
+. `cd linked-data-store-docker-<provider>`
+. `docker build -t lds-memory:latest .`
+
+
+== Run docker container
+
+. Docker compose: `docker-compose -f ./docker/docker-compose.yml up`, or
+. Docker native: `docker run -it -p 9090:9090 -v [SCHEMA_FOLDER]:/schemas linked-data-store`
+
+=== Configuration
+
+Create a local directory `/schemas` and configure the internal mount point in docker in `application.properties`:
+
+[source,properties]
+----
+specification.schema=/schemas
+----
+
+> Please refer to each persistence provider for custom configuration.

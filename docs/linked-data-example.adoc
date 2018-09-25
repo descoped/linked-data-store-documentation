@@ -1,0 +1,105 @@
+= Example
+
+
+====== `PROJECT/schemas/person-schema.json`
+[source,json]
+----
+{
+  "$ref": "#/definitions/person",
+  "definitions": {
+    "person": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "addresses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "_link_property_addresses": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "null"
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-04/schema#"
+}
+----
+
+====== `PROJECT/schemas/address-schema.json`
+[source,json]
+----
+{
+  "$ref": "#/definitions/address",
+  "definitions": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-04/schema#"
+}
+----
+
+====== Run
+`docker run -it -v PROJECT/schemas:/schemas -p 9090:9090 lds:latest`
+
+====== Create Person
+`curl -X PUT -d {"name": "John Doe"} -i http://localhost:9090/data/person/1`
+
+====== Get Person
+`curl -i http://localhost:9090/data/person/1` responds with:
+
+[source,json]
+----
+{
+    "name": "John Doe"
+}
+----
+
+
+====== Create Address
+`curl -X PUT -d {"street": "Doe Street 1", "city": "Cool City"} -i http://localhost:9090/data/address/1`
+
+====== Connect Address to Person
+`curl -X PUT -i http://localhost:9090/data/person/1/addresses/address/1`
+
+====== Get Person
+`curl -i http://localhost:9090/data/person/1` responds with:
+
+[source,json]
+----
+{
+    "name": "John Doe",
+    "addresses": [
+        "/address/1"
+    ]
+}
+----
+
+====== Get Address
+`curl -i http://localhost:9090/data/address/1` responds with:
+
+[source,json]
+----
+{
+    "street": "Doe Street 1",
+    "city": "Cool City"
+}
+----
+

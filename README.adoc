@@ -1,0 +1,62 @@
+// Ascidoc Cheat Sheet: https://github.com/powerman/asciidoc-cheatsheet
+
+//:toc:
+//:toc-placement: preamble
+//:toclevels: 2
+
+ifdef::env-github[]
+:TIP-caption: :bulb:
+endif::[]
+
+
+Linked Data Store
+=================
+
+____
+This documentation is work in progress!
+____
+
+Linked Data Store (LDS) manages structured data by using JSON Schema and a directive to describe linking of JSON objects with another. It is a JSON store bound to a well defined resource oriented REST API. The LDS is smart  -- and allows you create data in a free order. You can create data that links to other data, even before its linked data has been created.
+
+This documentation outlines how to get started, concepts and use.
+
+=== Run
+
+[TIP]
+Container images are maintained on Docker Hub.
+
+[source,bash]
+----
+$ docker run -it -p 9090:9090 -v $HOME/schemas:/schemas lds-memory:latest
+$ curl -I localhost:9090/ping
+----
+
+The link:docks/linked-data-example.adoc[person-/adreess- example] demonstrate how to configure schemas and use of LDS.
+
+
+== Background
+
+Statistics Norway is modernizing its systems for statistical production. A key standard in this field is the https://statswiki.unece.org/display/GSIMclick/Clickable+GSIM[GSIM (Generic Statistics Information Model)].
+
+The Linked Data Store is developed and designed to support storage of structured metadata and data based on the GSIM standard, in which forms the basis for the Logical Data Model -- the concrete domain specific model to be used in Statistics Norway.
+
+[TIP]
+This software is designed as a generic solution to be used by anybody who needs a structured JSON store.
+
+== Contribution / Feedback
+
+We encourage anyone to use, contribute or provide comments to the LDS. Feel free to raise issues or comments. The LDS is still in its early days.
+
+= Table of Contents
+
+. link:docs/getting-started.adoc[Getting started]
+. link:docs/introduction.adoc[Introduction]
+
+= Other references
+
+* https://json-schema.org/[IETF JSON Schema]
+* https://www.ietf.org/archive/id/draft-zyp-json-schema-04.txt[JSON Schema Draft 4]
+
+= License
+
+This software is licensed under link:LICENSE[APL 2.0]
