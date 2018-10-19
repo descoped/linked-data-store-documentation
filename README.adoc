@@ -16,7 +16,13 @@ ____
 This documentation is work in progress!
 ____
 
-Linked Data Store (LDS) manages structured data by using JSON Schema and a directive to describe linking of JSON objects with another. It is a JSON store bound to a well defined resource oriented REST API. The LDS is smart  -- and allows you create data in a free order. You can create data that links to other data, even before its linked data has been created.
+Linked Data Store (LDS) offers a well defined resource-oriented RESTful API over a runtime configured information model
+allowing users to read and write data directly using their native information model. LDS has data-versioning capabilites
+that allows it to act as an immutable datastore where data can be read as they were back in time. The information model
+configuration is represented using JSON Schema and LDS will interpret schema properties prefixed with `_link_property_`
+as directives to describe relationships between entities in the information model. LDS is intended to be a smart service
+layer between information-model-aware applications and the underlying persistence-technology (e.g. Postgres, Neo4j,
+BigTable).
 
 This documentation outlines how to get started, concepts and use.
 
@@ -27,7 +33,7 @@ Container images are maintained on Docker Hub.
 
 [source,bash]
 ----
-$ docker run -it -p 9090:9090 -v $HOME/schemas:/schemas lds-memory:latest
+$ docker run -it -p 9090:9090 -v $HOME/schemas:/schemas statisticsnorway/lds-memory:latest
 $ curl -I localhost:9090/ping
 ----
 
@@ -36,16 +42,15 @@ The link:docs/linked-data-example.adoc[person-/adreess- example] demonstrate how
 
 == Background
 
-Statistics Norway is modernizing its systems for statistical production. A key standard in this field is the https://statswiki.unece.org/display/GSIMclick/Clickable+GSIM[GSIM (Generic Statistics Information Model)].
-
-The Linked Data Store is developed and designed to support storage of structured metadata and data based on the GSIM standard, in which forms the basis for the Logical Data Model -- the concrete domain specific model to be used in Statistics Norway.
+Statistics Norway is modernizing its core systems for statistical production. Statistics Norway uses an information
+model adhering to the UN standard https://statswiki.unece.org/display/GSIMclick/Clickable+GSIM[GSIM (Generic Statistics Information Model)].
 
 [TIP]
-This software is designed as a generic solution to be used by anybody who needs a structured JSON store.
+LDS is designed as a generic solution to be used by anybody who needs a structured JSON store.
 
 == Contribution / Feedback
 
-We encourage anyone to use, contribute or provide comments to the LDS. Feel free to raise issues or comments. The LDS is still in its early days.
+We encourage anyone to use, contribute to, or comment on LDS.
 
 = Table of Contents
 
