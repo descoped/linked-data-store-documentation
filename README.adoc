@@ -5,8 +5,13 @@
 ifndef::env-github[]
 :doctype: book
 :page-layout: docs
+:numbered:
 :toc: left
-:toclevels: 2
+:toclevels: 3
+:source-highlighter: coderay
+:coderay-linenums-mode: inline
+:coderay-css: class
+:icons: awesome
 endif::[]
 
 ifdef::env-github[]
@@ -23,14 +28,11 @@ endif::[]
 This documentation is work in progress!
 ====
 
-Linked Data Store (LDS) offers a well defined resource-oriented RESTful API over a runtime configured information model
-allowing users to read and write data directly using their native information model. LDS has data-versioning capabilites
-that allows it to act as an immutable datastore where data can be read as they were back in time. The information model
-configuration is represented using JSON Schema and LDS will interpret schema properties prefixed with `_link_property_`
-as directives to describe relationships between entities in the information model. LDS is intended to be a smart service
-layer between information-model-aware applications and the underlying persistence-technology (e.g. Postgres, Neo4j, FoundationDb, BigTable).
+Linked Data Store (LDS) offers a well defined resource-oriented RESTful API over a runtime configured information model allowing users to read and write data. LDS supports _time-based-data-versioning_ capabilities that allows it to act as an immutable datastore where data can be read as they were back in time.
 
-This documentation outlines how to get started, concepts and use.
+The information model configuration is represented using JSON Schema and LDS will interpret schema properties prefixed with `_link_property_` as directives to describe relationships between entities in the information model.
+
+LDS is intended to be a smart service layer between information-model-aware applications and the underlying persistence-technology (e.g. Postgres, Neo4j, FoundationDb, BigTable).
 
 
 ifdef::env-github[]
@@ -44,19 +46,14 @@ endif::[]
 
 ifndef::env-github[]
 :leveloffset: +1
-include::docs/background.adoc[Background]
-:leveloffset: -1
-:leveloffset: +1
-include::docs/architecture.adoc[Architecture]
-:leveloffset: -1
-include::docs/administration.adoc[Administration]
-:leveloffset: -1
-:leveloffset: +1
-include::docs/examples.adoc[Examples]
+include::docs/background.adoc[]
+include::docs/architecture.adoc[]
+include::docs/administration.adoc[]
+include::docs/examples.adoc[]
 :leveloffset: -1
 endif::[]
 
-= Other references
+== Other references
 
 * https://json-schema.org/[IETF JSON Schema]
 * https://www.ietf.org/archive/id/draft-zyp-json-schema-04.txt[JSON Schema Draft 4]

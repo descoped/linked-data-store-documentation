@@ -5,10 +5,16 @@ ifdef::env-github[]
 :toc-placement: preamble
 endif::[]
 
-== Person / Address example
+== JSON Schema
 
-====== `PROJECT/schemas/person.json`
-[source,json]
+The first step with LDS is to define your JSON Schemas. Here is a simple Person -> Address example. Start by creating a SCHEMA_FOLDER directory.
+
+
+=== Create Person object
+
+*SCHEMA_FOLDER/person.json*
+
+[source,json,linenums]
 ----
 {
   "$ref": "#/definitions/person",
@@ -16,10 +22,10 @@ endif::[]
     "person": {
       "type": "object",
       "properties": {
-        "name": {
+        "name": { <1>
           "type": "string"
         },
-        "addresses": {
+        "addresses": { <2>
           "type": "array",
           "items": {
             "type": "string"
@@ -39,9 +45,12 @@ endif::[]
   "$schema": "http://json-schema.org/draft-04/schema#"
 }
 ----
+<1> `name` is of primitive string type
+<2> `address` is an array of links to type Address
 
-====== `PROJECT/schemas/address.json`
-[source,json]
+*PROJECT/schemas/address.json*
+
+[source,json,linenums]
 ----
 {
   "$ref": "#/definitions/address",
@@ -62,13 +71,20 @@ endif::[]
 }
 ----
 
-====== Run
-`docker run -it -v PROJECT/schemas:/schemas -p 9090:9090 lds:latest`
+== Run
 
-====== Create Person
+Noow that you have
+
+`docker run -it -v PROJECT/schemas:/schemas -p 9090:9090 lds-memory:latest`
+
+== Create, Overwrite, Read and Delete
+
+=== Create Person
+
 `curl -X PUT -d {"name": "John Doe"} -i http://localhost:9090/data/person/1`
 
-====== Get Person
+=== Get Person
+
 `curl -i http://localhost:9090/data/person/1` responds with:
 
 [source,json]
@@ -79,13 +95,16 @@ endif::[]
 ----
 
 
-====== Create Address
+=== Create Address
+
 `curl -X PUT -d {"street": "Doe Street 1", "city": "Cool City"} -i http://localhost:9090/data/address/1`
 
-====== Connect Address to Person
+=== Connect Address to Person
+
 `curl -X PUT -i http://localhost:9090/data/person/1/addresses/address/1`
 
-====== Get Person
+=== Get Person
+
 `curl -i http://localhost:9090/data/person/1` responds with:
 
 [source,json]
@@ -98,7 +117,8 @@ endif::[]
 }
 ----
 
-====== Get Address
+=== Get Address
+
 `curl -i http://localhost:9090/data/address/1` responds with:
 
 [source,json]
@@ -109,3 +129,10 @@ endif::[]
 }
 ----
 
+
+== Java Server Bootstrap
+
+[source,java,linenums,options="nowrap"]
+----
+include::source/Server.java[]
+----

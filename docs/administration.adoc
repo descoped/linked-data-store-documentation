@@ -19,6 +19,8 @@ endif::[]
 
 == Pre-requisite
 
+Before you begin
+
 . Requires OpenJDK 11
 . Docker CE 18+
 
@@ -46,7 +48,7 @@ The simplest way for getting started is to checkout https://github.com/statistic
 * https://github.com/statisticsnorway/linked-data-store-docker-postgres[linked-data-store-docker-postgres]
 
 
-= Schema
+== Schema
 
 Detailed explaination of how to write JSONSchema
 
@@ -57,12 +59,12 @@ Link to JSONSchema
 Linked property: directive that descibes how two data entities are connected. (_linked_property_(..))
 
 
-==== Build project
+=== Build project
 
 `mvn clean install`
 
 
-==== Pull sources and rebase
+=== Pull sources and rebase
 
 `./pull.sh`
 

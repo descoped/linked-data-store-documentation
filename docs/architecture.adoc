@@ -6,15 +6,21 @@ ifdef::env-github[]
 endif::[]
 
 
-== How is LDS for
+== Features
 
-Hvilke behov du har for at LDS "er for deg". Strukturect storage (krever skjema).
+* Model your data using JSON Schema
+* Structured storage of JSON Documents according to schemas
+* Link data with another
+* A common resource-orient REST API configured at runtime according to JSON Schema
+* Write links even before the data you are linking to, has been created
+* Time-based versioning (live time machine)
+* Provider based persistence storage capability
+** Chose between: PostgreSQL, Neo4j, FoundationDb or BigTable
+
 
 == Design
 
-(skisse)
-
-hva gjør LDS "smart"? Bruker skjema for å bygge smarte APIer and a structured storage domain.
+TBD
 
 == How it works
 
@@ -24,3 +30,4 @@ hva gjør LDS "smart"? Bruker skjema for å bygge smarte APIer and a structured 
 * Managed resources
 * Embedded resources
 * Linked data resources
+

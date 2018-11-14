@@ -8,5 +8,5 @@ endif::[]
 Statistics Norway is modernizing its core systems for statistical production. Statistics Norway uses an information model that is based on the UN standard https://statswiki.unece.org/display/GSIMclick/Clickable+GSIM[GSIM (Generic Statistics Information Model)].
 
 [TIP]
-LDS is designed as a generic solution to be used by anybody who needs a structured JSON store.
+LDS was designed for providing a generic way of handling -metadata and -data supporting GSIM compliant information models.
 
