@@ -1,5 +1,12 @@
 = Examples
 
+ifndef::env-github[]
+:source-highlighter: coderay
+:coderay-linenums-mode: inline
+:coderay-css: class
+:icons: font
+endif::[]
+
 ifdef::env-github[]
 :tip-caption: :bulb:
 :toc-placement: preamble
@@ -10,7 +17,7 @@ endif::[]
 The first step with LDS is to define your JSON Schemas. Here is a simple Person -> Address example. Start by creating a SCHEMA_FOLDER directory.
 
 
-=== Create Person object
+=== Person object
 
 *SCHEMA_FOLDER/person.json*
 
@@ -19,22 +26,22 @@ The first step with LDS is to define your JSON Schemas. Here is a simple Person 
 {
   "$ref": "#/definitions/person",
   "definitions": {
-    "person": {
+    "person": { <1>
       "type": "object",
       "properties": {
-        "name": { <1>
+    "name": { <2>
           "type": "string"
         },
-        "addresses": { <2>
+        "addresses": { <3>
           "type": "array",
           "items": {
             "type": "string"
           }
         },
-        "_link_property_addresses": {
+        "_link_property_addresses": { <4>
           "type": "object",
           "properties": {
-            "address": {
+            "address": { <5>
               "type": "null"
             }
           }
@@ -45,23 +52,33 @@ The first step with LDS is to define your JSON Schemas. Here is a simple Person 
   "$schema": "http://json-schema.org/draft-04/schema#"
 }
 ----
-<1> `name` is of primitive string type
-<2> `address` is an array of links to type Address
+<1> `person` is an object
+<2> `name` is of primitive string type
+<3> `addresses` is an array of links to type Address
+<4> `_linked_property_addresses` is an instruction to LDS to maintain references to the object `Address`object
+<5> Link property `addresses` to `address`-object
 
-*PROJECT/schemas/address.json*
+[TIP]
+====
+The `_linked_property` is in terms of JSON Schema a property, just like any other property. However, the LDS interprets this as an instruction to maintain a linked relationship between two resources. The multiplicity is defined by the type of the outgoing link. In this case, an `array` (aka one-to-many). The suffix of `addresses` in `_linked_property_addresses` binds the property `addresses`to the referred property `address` in which instruct LDS to link this array to the `address`-object.
+====
+
+=== Address object
+
+*SCHEMA_FOLDER/address.json*
 
 [source,json,linenums]
 ----
 {
   "$ref": "#/definitions/address",
   "definitions": {
-    "address": {
+    "address": { <1>
       "type": "object",
       "properties": {
-        "street": {
+        "street": { <2>
           "type": "string"
         },
-        "city": {
+        "city": { <3>
           "type": "string"
         }
       }
@@ -70,22 +87,35 @@ The first step with LDS is to define your JSON Schemas. Here is a simple Person 
   "$schema": "http://json-schema.org/draft-04/schema#"
 }
 ----
+<1> `address` is an object
+<2> `street` is a property
+<3> `city` is a property
 
-== Run
 
-Noow that you have
+== Start LDS
 
-`docker run -it -v PROJECT/schemas:/schemas -p 9090:9090 lds-memory:latest`
+The docker image `lds-memory:latest` is just for demo purposes. You may also try out this example with e.g. `lds-postgres:latest`, `lds-neo4j:latest` or any other provider.
+
+=== Run
+
+`docker run -it -v SCHEMA_FOLDER:/schemas -p 9090:9090 lds-memory:latest`
+
 
 == Create, Overwrite, Read and Delete
 
 === Create Person
 
-`curl -X PUT -d {"name": "John Doe"} -i http://localhost:9090/data/person/1`
+```
+curl -X PUT -d {"name": "John Doe"} -i http://localhost:9090/ns/person/1
+```
 
 === Get Person
 
-`curl -i http://localhost:9090/data/person/1` responds with:
+```
+curl -i http://localhost:9090/ns/person/1
+```
+
+should respond:
 
 [source,json]
 ----
@@ -97,15 +127,24 @@ Noow that you have
 
 === Create Address
 
-`curl -X PUT -d {"street": "Doe Street 1", "city": "Cool City"} -i http://localhost:9090/data/address/1`
+```
+curl -X PUT -d {"street": "Doe Street 1", "city": "Cool City"} -i http://localhost:9090/ns/address/1
+```
 
 === Connect Address to Person
 
-`curl -X PUT -i http://localhost:9090/data/person/1/addresses/address/1`
+```
+curl -X PUT -i http://localhost:9090/ns/person/1/addresses/address/1
+```
 
 === Get Person
 
-`curl -i http://localhost:9090/data/person/1` responds with:
+```
+curl -i http://localhost:9090/ns/person/1
+
+```
+
+should respond:
 
 [source,json]
 ----
@@ -119,7 +158,11 @@ Noow that you have
 
 === Get Address
 
-`curl -i http://localhost:9090/data/address/1` responds with:
+```
+curl -i http://localhost:9090/ns/address/1
+```
+
+should respond:
 
 [source,json]
 ----

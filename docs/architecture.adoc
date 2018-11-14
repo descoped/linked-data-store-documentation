@@ -11,7 +11,7 @@ endif::[]
 * Model your data using JSON Schema
 * Structured storage of JSON Documents according to schemas
 * Link data with another
-* A common resource-orient REST API configured at runtime according to JSON Schema
+* An idempotent resource-oriented REST API configured at runtime according to JSON Schema
 * Write links even before the data you are linking to, has been created
 * Time-based versioning (live time machine)
 * Provider based persistence storage capability
