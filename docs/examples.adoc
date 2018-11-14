@@ -1,7 +1,13 @@
-= Example
+= Examples
 
+ifdef::env-github[]
+:tip-caption: :bulb:
+:toc-placement: preamble
+endif::[]
 
-====== `PROJECT/schemas/person-schema.json`
+== Person / Address example
+
+====== `PROJECT/schemas/person.json`
 [source,json]
 ----
 {
@@ -34,7 +40,7 @@
 }
 ----
 
-====== `PROJECT/schemas/address-schema.json`
+====== `PROJECT/schemas/address.json`
 [source,json]
 ----
 {

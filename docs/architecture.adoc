@@ -1,0 +1,26 @@
+= Architecture
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:toc-placement: preamble
+endif::[]
+
+
+== How is LDS for
+
+Hvilke behov du har for at LDS "er for deg". Strukturect storage (krever skjema).
+
+== Design
+
+(skisse)
+
+hva gjør LDS "smart"? Bruker skjema for å bygge smarte APIer and a structured storage domain.
+
+== How it works
+
+* Configured JsonSchema
+** (link to schema)
+* Offer a common REST API
+* Managed resources
+* Embedded resources
+* Linked data resources

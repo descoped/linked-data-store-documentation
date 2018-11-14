@@ -1,67 +1,66 @@
 // Ascidoc Cheat Sheet: https://github.com/powerman/asciidoc-cheatsheet
 
-//:toc:
-//:toc-placement: preamble
-//:toclevels: 2
+:doctitle: Linked Data Store
 
-ifdef::env-github[]
-:TIP-caption: :bulb:
+ifndef::env-github[]
+:doctype: book
+:page-layout: docs
+:toc: left
+:toclevels: 2
 endif::[]
 
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:toc-placement: preamble
+endif::[]
 
-Linked Data Store
-=================
-
-____
+[NOTE]
+====
 This documentation is work in progress!
-____
+====
 
 Linked Data Store (LDS) offers a well defined resource-oriented RESTful API over a runtime configured information model
 allowing users to read and write data directly using their native information model. LDS has data-versioning capabilites
 that allows it to act as an immutable datastore where data can be read as they were back in time. The information model
 configuration is represented using JSON Schema and LDS will interpret schema properties prefixed with `_link_property_`
 as directives to describe relationships between entities in the information model. LDS is intended to be a smart service
-layer between information-model-aware applications and the underlying persistence-technology (e.g. Postgres, Neo4j,
-BigTable).
+layer between information-model-aware applications and the underlying persistence-technology (e.g. Postgres, Neo4j, FoundationDb, BigTable).
 
 This documentation outlines how to get started, concepts and use.
 
-=== Run
 
-[TIP]
-Container images are maintained on Docker Hub.
-
-[source,bash]
-----
-$ docker run -it -p 9090:9090 -v $HOME/schemas:/schemas statisticsnorway/lds-memory:latest
-$ curl -I localhost:9090/ping
-----
-
-The link:docs/linked-data-example.adoc[person-/adreess- example] demonstrate how to configure schemas and use of LDS.
-
-
-== Background
-
-Statistics Norway is modernizing its core systems for statistical production. Statistics Norway uses an information
-model adhering to the UN standard https://statswiki.unece.org/display/GSIMclick/Clickable+GSIM[GSIM (Generic Statistics Information Model)].
-
-[TIP]
-LDS is designed as a generic solution to be used by anybody who needs a structured JSON store.
-
-== Contribution / Feedback
-
-We encourage anyone to use, contribute to, or comment on LDS.
-
+ifdef::env-github[]
 = Table of Contents
 
-. link:docs/getting-started.adoc[Getting started]
-. link:docs/introduction.adoc[Introduction]
+. link:docs/background.adoc[Background]
+. link:docs/architecture.adoc[Architecture]
+. link:docs/administration.adoc[Administration]
+. link:docs/examples.adoc[Examples]
+endif::[]
+
+ifndef::env-github[]
+:leveloffset: +1
+include::docs/background.adoc[Background]
+:leveloffset: -1
+:leveloffset: +1
+include::docs/architecture.adoc[Architecture]
+:leveloffset: -1
+include::docs/administration.adoc[Administration]
+:leveloffset: -1
+:leveloffset: +1
+include::docs/examples.adoc[Examples]
+:leveloffset: -1
+endif::[]
 
 = Other references
 
 * https://json-schema.org/[IETF JSON Schema]
 * https://www.ietf.org/archive/id/draft-zyp-json-schema-04.txt[JSON Schema Draft 4]
 
-= License
+== License
 
 This software is licensed under link:LICENSE[APL 2.0]

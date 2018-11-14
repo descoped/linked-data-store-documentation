@@ -1,19 +1,26 @@
-:toc:
-:toc-placement: preamble
-:toclevels: 2
+= Administration
 
 ifdef::env-github[]
 :tip-caption: :bulb:
+:toc-placement: preamble
 endif::[]
 
-= Getting started
+== Disposition
 
-{empty}
+. Configuration (generel)
+. JSONSchemas for LDS
+.. Refer to Linked Property directive
+. Docker images / Persistence provider
+.. Persistence provider configuration
+.. Example of running each persistence provider
+
+> Memory provider should only used for testing purposes
+
 
 == Pre-requisite
 
-. Requires Zulu JDK 11: https://www.azul.com/downloads/zulu/ (OpenJDK may also be used)
-. Docker CE 18+: https://www.docker.com/community-edition
+. Requires OpenJDK 11
+. Docker CE 18+
 
 == Build
 
@@ -37,6 +44,17 @@ The simplest way for getting started is to checkout https://github.com/statistic
 * https://github.com/statisticsnorway/linked-data-store-docker-memory[linked-data-store-docker-memory]
 * https://github.com/statisticsnorway/linked-data-store-docker-neo4j[linked-data-store-docker-neo4j]
 * https://github.com/statisticsnorway/linked-data-store-docker-postgres[linked-data-store-docker-postgres]
+
+
+= Schema
+
+Detailed explaination of how to write JSONSchema
+
+Link to JSONSchema
+
+== Directives
+
+Linked property: directive that descibes how two data entities are connected. (_linked_property_(..))
 
 
 ==== Build project
@@ -80,3 +98,4 @@ specification.schema=/schemas
 ----
 
 > Please refer to each persistence provider for custom configuration.
+
