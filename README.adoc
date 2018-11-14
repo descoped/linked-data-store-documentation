@@ -8,10 +8,13 @@ ifndef::env-github[]
 :numbered:
 :toc: left
 :toclevels: 3
+:factory-ref: https://github.com/asciidoctor/asciidoctor-stylesheet-factory
+:uri-svgo: https://github.com/svg/svgo
+//:source-highlighter: highlightjs
 :source-highlighter: coderay
 :coderay-linenums-mode: inline
 :coderay-css: class
-:icons: awesome
+:icons: font
 endif::[]
 
 ifdef::env-github[]

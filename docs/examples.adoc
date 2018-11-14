@@ -130,9 +130,11 @@ Noow that you have
 ----
 
 
+ifndef::env-github[]
 == Java Server Bootstrap
 
 [source,java,linenums,options="nowrap"]
 ----
 include::source/Server.java[]
 ----
+endif::[]
