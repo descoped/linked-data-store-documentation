@@ -9,11 +9,9 @@ Statistics Norway is modernizing its core systems for statistical production. St
 
 Linked Data Store (LDS) was designed for providing a generic way of handling metadata and data supporting GSIM compliant information models. It is by no means bound to the GSIM domain, so it can be used for any application that requires _structured data_.
 
+ifndef::env-github[]
 = What is Linked Data Store?
 
-Linked Data Store (LDS) offers a well defined resource-oriented RESTful API over a runtime configured information model allowing users to read and write data. LDS supports _time-based-data-versioning_ capabilities that allows it to act as an immutable datastore where data can be read as they were back in time.
-
-The information model configuration is represented using JSON Schema and LDS will interpret schema properties prefixed with `_link_property_` as directives to describe relationships between entities in the information model.
-
-LDS is intended to be a smart service layer between information-model-aware applications and the underlying persistence-technology (e.g. Postgres, Neo4j, FoundationDb, BigTable).
+include::_includes/what-is-lds.adoc[]
+endif::[]
 

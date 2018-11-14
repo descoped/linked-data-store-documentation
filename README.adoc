@@ -32,6 +32,10 @@ This documentation is work in progress!
 ====
 
 ifdef::env-github[]
+include::docs/_includes/what-is-lds.adoc[]
+endif::[]
+
+ifdef::env-github[]
 = Table of Contents
 
 . link:docs/background.adoc[Background]
