@@ -31,8 +31,13 @@ endif::[]
 This documentation is work in progress!
 ====
 
+//// This description of LDS is also maintained in docs/_includes/what-is-lds.
 ifdef::env-github[]
-include::docs/_includes/what-is-lds.adoc[]
+Linked Data Store (LDS) offers a well defined resource-oriented RESTful API over a runtime configured information model allowing users to read and write data. LDS supports _time-based-data-versioning_ capabilities that allows it to act as an immutable datastore where data can be read as they were back in time.
+
+The information model configuration is represented using JSON Schema and LDS will interpret schema properties prefixed with `_link_property_` as directives to describe relationships between entities in the information model.
+
+LDS is intended to be a smart service layer between information-model-aware applications and the underlying persistence-technology (e.g. Postgres, Neo4j, FoundationDb, BigTable).
 endif::[]
 
 ifdef::env-github[]
