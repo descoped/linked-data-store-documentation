@@ -31,7 +31,8 @@ endif::[]
 This documentation is work in progress!
 ====
 
-//// This description of LDS is also maintained in docs/_includes/what-is-lds.
+// This description of LDS is also maintained in docs/_includes/what-is-lds.
+
 ifdef::env-github[]
 Linked Data Store (LDS) offers a well defined resource-oriented RESTful API over a runtime configured information model allowing users to read and write data. LDS supports _time-based-data-versioning_ capabilities that allows it to act as an immutable datastore where data can be read as they were back in time.
 
