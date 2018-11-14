@@ -1,22 +1,25 @@
 # How to build Asciidoclet
 
-## Asciidoctor installation:
+## Asciidoctor installation
 
-### Ubuntu
+> Requires Ruby and Gem.
 
-`apt install asciidoctor`
-
-### MacOS
-
-`brew install asciidoctor`
+```
+gem install asciidoctor
+gem install coderay
+```
 
 ## Build Asciidoctor doclet
 
-`asciidoctor README.adoc -D target/`
+```
+asciidoctor -a allow-uri-read -b html5 -a linkcss README.adoc -D target/
+```
 
 will generate the doclet:
 
-`target/README.html`
+```
+target/README.html
+```
 
 ## Browse doclet
 
@@ -24,7 +27,9 @@ Open your browser and open `target/README.html`
 
 ### MacOS
 
-`open target/README.html`
+```
+open target/README.html
+```
 
-will open the file in your preferred browser.
+will open the documentation in your preferred browser.
 
