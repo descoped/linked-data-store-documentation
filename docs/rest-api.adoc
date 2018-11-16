@@ -14,5 +14,239 @@ endif::[]
 
 == Overview
 
-todo
+The REST API that is built at runtime.
+
+
+== Get configured schemas
+
+=== Namespace schemas
+
+==== Set of schema URIs
+
+Get all configured schemas.
+
+[cols="h,5a"]
+|===
+| GET
+| /ns?schema
+| Request Body
+| N/A
+| Response codes
+| [cols="h,2"]
+!===
+! 200
+! Returns a set of configured json schemas
+! 404
+! Resource not found
+!===
+|===
+
+
+==== Array of Embedded JSON Schema
+
+Get all configured schemas.
+
+[cols="h,5a"]
+|===
+| GET
+| /ns?schema=embed
+| Request Body
+| N/A
+| Response codes
+| [cols="h,2"]
+!===
+! 200
+! Returns an array of configured json schemas
+! 404
+! Resource not found
+!===
+|===
+
+
+=== Managed resource schema
+
+==== Specific schema for a resource
+
+Get a specific schema for a managed resource.
+
+[cols="h,5a"]
+|===
+| GET
+| /ns/ManagedResource?schema
+| Request Body
+| N/A
+| Response codes
+| [cols="h,2"]
+!===
+! 200
+! Returns a schema for a managed resource
+! 404
+! Resource not found
+!===
+|===
+
+
+
+== Managed resource
+
+A Managed resources is a top level resource that referrs to the _JSON document_ in which MUST conform to its _JSON Schema_.
+
+=== Read
+
+_Read_ a managed resource.
+
+[cols="h,5a"]
+|===
+| GET
+| /ns/ManagedResource/[id]
+| Request Body
+| N/A
+| Response codes
+| [cols="h,2"]
+!===
+! 200
+! Resource found
+! 404
+! Resource not found
+!===
+|===
+
+
+=== Write
+
+_Create_ or _Overwrite_ a managed resource.
+
+[cols="h,5a"]
+|===
+| PUT
+| /ns/ManagedResource/[id]
+| Request Body
+| [source,json]
+----
+{
+  "name": "John Doe"
+}
+----
+| Response codes
+| [cols="h,2"]
+!===
+! 201
+! Resource Created
+! 200
+! Resource Overwriten
+! 400
+! Bad request
+! 404
+! Resource not found
+!===
+|===
+
+
+=== Delete
+
+_Delete_ a managed resource.
+
+[cols="h,5a"]
+|===
+| DELETE
+| /ns/ManagedResource/[id]
+| Request Body
+| N/A
+| Response codes
+| [cols="h,2"]
+!===
+! 200
+! Resource deleted
+! 400
+! Something went wrong
+! 404
+! Resource not found
+!===
+|===
+
+
+
+== Embedded resource
+
+An embedded resource points to data within a managed resource.
+
+=== Read
+
+_Read_ a embedded resource.
+
+[cols="h,5a"]
+|===
+| GET
+| /ns/ManagedResource/[id]/EmbeddedProperty[/NestedPropery
+| Request Body
+| N/A
+| Response codes
+| [cols="h,2"]
+!===
+! 200
+! Resource found
+! 404
+! Resource not found
+!===
+|===
+
+
+=== Write
+
+_Create_ or _Overwrite_ an embedded resource.
+
+[cols="h,5a"]
+|===
+| PUT
+| <1> /ns/ManagedResource/[id]/EmbeddedProperty
+<2> /ns/ManagedResource/[id]/EmbeddedProperty[/NestedPropery]
+| Request Body
+| [source,json]
+----
+"EmbeddedProperty": { // <1>
+    "NestedPropery": "value"
+}
+----
+[source,text]
+----
+value // <2>
+----
+| Response codes
+| [cols="h,2"]
+!===
+! 201
+! Resource Created
+! 200
+! Resource Overwriten
+! 400
+! Bad request
+! 404
+! Resource not found
+!===
+|===
+
+
+=== Delete
+
+_Delete_ a embedded resource.
+
+[cols="h,5a"]
+|===
+| DELETE
+| /ns/ManagedResource/[id]/EmbeddedProperty
+| Request Body
+| N/A
+| Response codes
+| [cols="h,2"]
+!===
+! 200
+! Resource deleted
+! 400
+! Something went wrong
+! 404
+! Resource not found
+!===
+|===
+
+
 

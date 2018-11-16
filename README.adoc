@@ -1,4 +1,5 @@
-// Ascidoc Cheat Sheet: https://github.com/powerman/asciidoc-cheatsheet
+// Asciidoc Cheat Sheet: https://github.com/powerman/asciidoc-cheatsheet
+// Asciidoc Manaual: https://asciidoctor.org/docs/user-manual/
 
 :doctitle: Linked Data Store
 
@@ -69,3 +70,4 @@ endif::[]
 == License
 
 This software is licensed under link:LICENSE[APL 2.0]
+

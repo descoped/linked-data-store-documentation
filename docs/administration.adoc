@@ -24,28 +24,70 @@ Before you begin
 . Requires OpenJDK 11
 . Docker CE 18+
 
-== Build
+== Build from sources
 
 All code modules are available at https://github.com/statisticsnorway?utf8=✓&q=linked-data-store[GitHub as separate projects].
 
 The simplest way for getting started is to checkout https://github.com/statisticsnorway/linked-data-store-project[linked-data-store-project].
+
+=== Modules
+
+[TIP]
+====
+Git projects are prefixed `linked-data-store-`.
+====
+
+.Code Modules
+|===
+|Project |Description |State
+
+|https://github.com/statisticsnorway/linked-data-store-core[core]
+|Linked Data Store Core
+|Stable
+
+|https://github.com/statisticsnorway/linked-data-store-persistence-provider-api[persistence-provider-api]
+|Persistence API
+|Stable
+
+|https://github.com/statisticsnorway/linked-data-store-persistence-provider-memory[persistence-provider-memory]
+|Memory Provider
+|Stable (test purposes only)
+
+|https://github.com/statisticsnorway/linked-data-store-persistence-provider-postgres[persistence-provider-postgres]
+|PostgreSQL Provider
+|Stable
+
+|https://github.com/statisticsnorway/linked-data-store-persistence-provider-neo4j[persistence-provider-neo4j]
+|Neo4j Provider
+|Stable
+
+|https://github.com/statisticsnorway/linked-data-store-persistence-provider-foundationdb[persistence-provider-foundationdb]
+|FoundationDB Provider
+|New
+
+|https://github.com/statisticsnorway/linked-data-store-docker-memory[docker-memory]
+|https://hub.docker.com/r/statisticsnorway/lds-memory/tags/[Docker Memory Container]
+|Stable (test purposes only)
+
+|https://github.com/statisticsnorway/linked-data-store-docker-postgres[docker-postgres]
+|https://hub.docker.com/r/statisticsnorway/lds-postgres/tags/[Docker PostgreSQL Container]
+|Stable
+
+|https://github.com/statisticsnorway/linked-data-store-docker-neo4j[docker-neo4j]
+|https://hub.docker.com/r/statisticsnorway/lds-neo4j/tags/[Docker Neo4j Container]
+|Stable
+
+|https://github.com/statisticsnorway/linked-data-store-docker-foundationdb[docker-foundationdb]
+|https://hub.docker.com/r/statisticsnorway/lds-foundationdb/tags/[Docker FoundationDb Container]
+|Upcoming
+|===
+
 
 === Checkout all modules
 
 . `cd  linked-data-store-project`
 . `./checkout.sh` (git clone all code modules):
 
-
-==== Modules
-
-* https://github.com/statisticsnorway/linked-data-store-core[linked-data-store-core]
-* https://github.com/statisticsnorway/linked-data-store-persistence-provider-api[linked-data-store-persistence-provider-api]
-* https://github.com/statisticsnorway/linked-data-store-persistence-provider-memory[linked-data-store-persistence-provider-memory]
-* https://github.com/statisticsnorway/linked-data-store-persistence-provider-neo4j[linked-data-store-persistence-provider-neo4j]
-* https://github.com/statisticsnorway/linked-data-store-persistence-provider-postgres[linked-data-store-persistence-provider-postgres]
-* https://github.com/statisticsnorway/linked-data-store-docker-memory[linked-data-store-docker-memory]
-* https://github.com/statisticsnorway/linked-data-store-docker-neo4j[linked-data-store-docker-neo4j]
-* https://github.com/statisticsnorway/linked-data-store-docker-postgres[linked-data-store-docker-postgres]
 
 
 == Schema

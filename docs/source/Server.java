@@ -6,6 +6,9 @@ import no.ssb.lds.core.UndertowApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * <1> bla bla bla
+ */
 public class Server {
 
     private static final Logger LOG = LoggerFactory.getLogger(Server.class);
@@ -19,9 +22,9 @@ public class Server {
                 .propertiesResource("/conf/application.properties")
                 .environment("LDS_")
                 .systemProperties()
-                .build();
+                .build(); // <1>
 
-        UndertowApplication application = UndertowApplication.initializeUndertowApplication(configuration);
+        UndertowApplication application = UndertowApplication.initializeUndertowApplication(configuration); // <1>
 
         try {
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
