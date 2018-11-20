@@ -129,10 +129,6 @@ The persistence providers share a common configuration located at `linked-data-s
 |5432
 |Default port
 
-|neo4j.driver.password
-|PasSW0rd
-|Default Neo4j password
-
 |postgres.driver.user
 |lds
 |Default database user
