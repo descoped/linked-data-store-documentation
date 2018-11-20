@@ -31,11 +31,11 @@ The (_linked_property_(resource)) directive defines how two data entities are co
 
 == Configuration
 
-The persistence providers share a common configuration declared in the `linked-data-store-core/src/main/resources/application-defaults.properties` and specifc configurations are located in each _Docker Provider_.
+The persistence providers share a common configuration located at `linked-data-store-core/src/main/resources/application-defaults.properties`, whereas specific configurations are located in each _Docker Provider_ project.
 
 .Configuration properties
 |===
-|Key |Value |Description
+|Key |Default value |Description
 
 |http.host
 |0.0.0.0
@@ -59,17 +59,97 @@ The persistence providers share a common configuration declared in the `linked-d
 
 === Memory Persistence Provider
 
-(Work in Progress)
+.Configuration properties
+|===
+|Key |Default value |Description
+
+|persistence.mem.wait.min
+|0
+|Min wait random-throttle time in millis to sleeps during write
+
+|persistence.mem.wait.max
+|0
+|Max wait random-throttle time in millis to sleeps during write
+
+|specification.schema
+|/schemas
+|Default used by docker
+
+|===
+
 
 === Neo4j Persistence Provider
 
-(Work in Progress)
+.Configuration properties
+|===
+|Key |Default value |Description
+
+|persistence.initialization.max-wait-seconds
+|10
+|Time to wait in seconds before Neo4j is available for connection
+
+|neo4j.driver.url
+|bolt://db-neo4j:7687
+|Default docker-compose connection url
+
+|neo4j.driver.username
+|neo4j
+|Default Neo4j username
+
+|neo4j.driver.password
+|PasSW0rd
+|Default Neo4j password
+
+|neo4j.cypher.show
+|false
+|Verbose CypherQL logging
+
+|specification.schema
+|/schemas
+|Default used by docker
+
+|===
+
 
 === PostgreSQL Persistence Provider
 
-(Work in Progress)
+.Configuration properties
+|===
+|Key |Default value |Description
 
-=== FoundationDb Persistence Provider
+|persistence.initialization.max-wait-seconds
+|2
+|Time to wait in seconds before Neo4j is available for connection
 
-(Work in Progress)
+|postgres.driver.host
+|postgresdb
+|Default host
+
+|postgres.driver.port
+|5432
+|Default port
+
+|neo4j.driver.password
+|PasSW0rd
+|Default Neo4j password
+
+|postgres.driver.user
+|lds
+|Default database user
+
+|postgres.driver.password
+|lds
+|Default database password
+
+|postgres.driver.database
+|lds
+|Default database
+
+|specification.schema
+|/schemas
+|Default used by docker
+
+|===
+
+
 
