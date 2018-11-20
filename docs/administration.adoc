@@ -23,7 +23,7 @@ Memory provider should only used for testing purposes
 
 == Schema
 
-LDS i tested JSON Schema draft 04 to define a schema.
+LDS uses JSON Schema draft04. The schemas defines the data model and uses _directives_ to express links between json resources. Further during startup the schemas configures all REST APIs.
 
 === Directives
 
@@ -31,21 +31,45 @@ The (_linked_property_(resource)) directive defines how two data entities are co
 
 == Configuration
 
-WIP.
+The persistence providers share a common configuration declared in the `linked-data-store-core/src/main/resources/application-defaults.properties` and specifc configurations are located in each _Docker Provider_.
+
+.Configuration properties
+|===
+|Key |Value |Description
+
+|http.host
+|0.0.0.0
+|Binds default loopback and private IP
+
+|http.cors.allow.origin
+|*
+|Constrain what hosts should have access to the web server
+
+|namespace.default
+|ns
+|Default URI namespace prefix
+
+|specification.schema
+|empty
+|Location of where LDS reads its schemas. Inside docker images the default is /schema
+
+|===
+
+
 
 === Memory Persistence Provider
 
-WIP
+(Work in Progress)
 
 === Neo4j Persistence Provider
 
-WIP
+(Work in Progress)
 
 === PostgreSQL Persistence Provider
 
-WIP
+(Work in Progress)
 
 === FoundationDb Persistence Provider
 
-WIP
+(Work in Progress)
 
