@@ -23,7 +23,7 @@ Memory provider should only used for testing purposes
 
 == Schema
 
-LDS uses JSON Schema draft04. The schemas defines the data model and uses _directives_ to express links between json resources. Further during startup the schemas configures all REST APIs.
+LDS uses JSON Schema draft04. The schemas define the data model and uses _directives_ to express links between json resources. Further during startup the schemas configures all REST APIs.
 
 === Directives
 
@@ -40,6 +40,10 @@ The persistence providers share a common configuration located at `linked-data-s
 |http.host
 |0.0.0.0
 |Binds default loopback and private IP
+
+|http.port
+|9090
+|Binds default IP port
 
 |http.cors.allow.origin
 |*
