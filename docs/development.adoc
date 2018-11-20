@@ -1,0 +1,118 @@
+= Development
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:toc-placement: preamble
+endif::[]
+
+== Pre-requisite
+
+. Requires OpenJDK 11
+. Docker CE 18+
+
+== Build from sources
+
+All code modules are available at https://github.com/statisticsnorway?utf8=✓&q=linked-data-store[GitHub as separate projects].
+
+The simplest way for getting started is to checkout https://github.com/statisticsnorway/linked-data-store-project[linked-data-store-project].
+
+=== Modules
+
+[TIP]
+====
+Git projects are prefixed `linked-data-store-`.
+====
+
+.Code Modules
+|===
+|Project |Description |State
+
+|https://github.com/statisticsnorway/linked-data-store-core[core]
+|Linked Data Store Core
+|Stable
+
+|https://github.com/statisticsnorway/linked-data-store-persistence-provider-api[persistence-provider-api]
+|Persistence API
+|Stable
+
+|https://github.com/statisticsnorway/linked-data-store-persistence-provider-memory[persistence-provider-memory]
+|Memory Provider
+|Stable (test purposes only)
+
+|https://github.com/statisticsnorway/linked-data-store-persistence-provider-postgres[persistence-provider-postgres]
+|PostgreSQL Provider
+|Stable
+
+|https://github.com/statisticsnorway/linked-data-store-persistence-provider-neo4j[persistence-provider-neo4j]
+|Neo4j Provider
+|Stable
+
+|https://github.com/statisticsnorway/linked-data-store-persistence-provider-foundationdb[persistence-provider-foundationdb]
+|FoundationDB Provider
+|New
+
+|https://github.com/statisticsnorway/linked-data-store-docker-memory[docker-memory]
+|https://hub.docker.com/r/statisticsnorway/lds-memory/tags/[Docker Memory Container]
+|Stable (test purposes only)
+
+|https://github.com/statisticsnorway/linked-data-store-docker-postgres[docker-postgres]
+|https://hub.docker.com/r/statisticsnorway/lds-postgres/tags/[Docker PostgreSQL Container]
+|Stable
+
+|https://github.com/statisticsnorway/linked-data-store-docker-neo4j[docker-neo4j]
+|https://hub.docker.com/r/statisticsnorway/lds-neo4j/tags/[Docker Neo4j Container]
+|Stable
+
+|https://github.com/statisticsnorway/linked-data-store-docker-foundationdb[docker-foundationdb]
+|https://hub.docker.com/r/statisticsnorway/lds-foundationdb/tags/[Docker FoundationDb Container]
+|Upcoming
+|===
+
+
+=== Checkout all modules
+
+. `cd  linked-data-store-project`
+. `./checkout.sh` (git clone all code modules):
+
+=== Build project
+
+`mvn clean install`
+
+
+=== Pull sources and rebase
+
+`./pull.sh`
+
+
+== Coding
+
+Open and import `linked-data-store-project`.
+
+All `linked-data-store-docker-`(provider) is structured similarly. To run the server navigate to `no.ssb.lds.server` and run `Server`.
+
+Ping URL: `http://localhost:9090/ping`
+
+
+== Build a docker image
+
+Each `linked-data-store-docker-`(provider) project has its own `build-dev.sh` script that builds the development docker image.
+
+
+== Run docker container
+
+Execute the `run-dev.sh` script.
+
+Ping URL: `http://localhost:9090/ping`
+
+
+=== Configuration
+
+[NOTE]
+====
+Please refer to each persistence provider for custom configuration.
+====
+

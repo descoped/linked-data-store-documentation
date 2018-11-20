@@ -2,144 +2,50 @@
 
 ifdef::env-github[]
 :tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
 :toc-placement: preamble
 endif::[]
 
-== Disposition
 
-. Configuration (generel)
-. JSONSchemas for LDS
-.. Refer to Linked Property directive
-. Docker images / Persistence provider
-.. Persistence provider configuration
-.. Example of running each persistence provider
+== Pre-requisites
 
-> Memory provider should only used for testing purposes
+* JSON Schemas must be defined before the server can start
+* Persistence Providers has their own bespoke configurations. Please refer to specific providers for configuration
 
-
-== Pre-requisite
-
-Before you begin
-
-. Requires OpenJDK 11
-. Docker CE 18+
-
-== Build from sources
-
-All code modules are available at https://github.com/statisticsnorway?utf8=✓&q=linked-data-store[GitHub as separate projects].
-
-The simplest way for getting started is to checkout https://github.com/statisticsnorway/linked-data-store-project[linked-data-store-project].
-
-=== Modules
-
-[TIP]
+[WARNING]
 ====
-Git projects are prefixed `linked-data-store-`.
+Memory provider should only used for testing purposes
 ====
-
-.Code Modules
-|===
-|Project |Description |State
-
-|https://github.com/statisticsnorway/linked-data-store-core[core]
-|Linked Data Store Core
-|Stable
-
-|https://github.com/statisticsnorway/linked-data-store-persistence-provider-api[persistence-provider-api]
-|Persistence API
-|Stable
-
-|https://github.com/statisticsnorway/linked-data-store-persistence-provider-memory[persistence-provider-memory]
-|Memory Provider
-|Stable (test purposes only)
-
-|https://github.com/statisticsnorway/linked-data-store-persistence-provider-postgres[persistence-provider-postgres]
-|PostgreSQL Provider
-|Stable
-
-|https://github.com/statisticsnorway/linked-data-store-persistence-provider-neo4j[persistence-provider-neo4j]
-|Neo4j Provider
-|Stable
-
-|https://github.com/statisticsnorway/linked-data-store-persistence-provider-foundationdb[persistence-provider-foundationdb]
-|FoundationDB Provider
-|New
-
-|https://github.com/statisticsnorway/linked-data-store-docker-memory[docker-memory]
-|https://hub.docker.com/r/statisticsnorway/lds-memory/tags/[Docker Memory Container]
-|Stable (test purposes only)
-
-|https://github.com/statisticsnorway/linked-data-store-docker-postgres[docker-postgres]
-|https://hub.docker.com/r/statisticsnorway/lds-postgres/tags/[Docker PostgreSQL Container]
-|Stable
-
-|https://github.com/statisticsnorway/linked-data-store-docker-neo4j[docker-neo4j]
-|https://hub.docker.com/r/statisticsnorway/lds-neo4j/tags/[Docker Neo4j Container]
-|Stable
-
-|https://github.com/statisticsnorway/linked-data-store-docker-foundationdb[docker-foundationdb]
-|https://hub.docker.com/r/statisticsnorway/lds-foundationdb/tags/[Docker FoundationDb Container]
-|Upcoming
-|===
-
-
-=== Checkout all modules
-
-. `cd  linked-data-store-project`
-. `./checkout.sh` (git clone all code modules):
-
 
 
 == Schema
 
-Detailed explaination of how to write JSONSchema
+LDS i tested JSON Schema draft 04 to define a schema.
 
-Link to JSONSchema
+=== Directives
 
-== Directives
+The (_linked_property_(resource)) directive defines how two data entities are connected. This allows you connect data from one property to another.
 
-Linked property: directive that descibes how two data entities are connected. (_linked_property_(..))
+== Configuration
 
+WIP.
 
-=== Build project
+=== Memory Persistence Provider
 
-`mvn clean install`
+WIP
 
+=== Neo4j Persistence Provider
 
-=== Pull sources and rebase
+WIP
 
-`./pull.sh`
+=== PostgreSQL Persistence Provider
 
+WIP
 
-== Run
+=== FoundationDb Persistence Provider
 
-. `cd linked-data-store-docker-<provider>`
-. `mvn clean install`
-. `java -jar target/linked-data-store-docker-<provider>-0.x-SNAPSHOT.jar`
-. Ping URL: `http://localhost:9090/ping`
-
-
-== Build a docker image
-
-Container images are maintained on Docker Hub.
-
-. `cd linked-data-store-docker-<provider>`
-. `docker build -t lds-memory:latest .`
-
-
-== Run docker container
-
-. Docker compose: `docker-compose -f ./docker/docker-compose.yml up`, or
-. Docker native: `docker run -it -p 9090:9090 -v [SCHEMA_FOLDER]:/schemas linked-data-store`
-
-=== Configuration
-
-Create a local directory `/schemas` and configure the internal mount point in docker in `application.properties`:
-
-[source,properties]
-----
-specification.schema=/schemas
-----
-
-> Please refer to each persistence provider for custom configuration.
+WIP
 

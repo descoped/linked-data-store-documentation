@@ -2,16 +2,20 @@
 
 ifdef::env-github[]
 :tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
 :toc-placement: preamble
 endif::[]
 
 
 == Features
 
-* Model your data using JSON Schema
+* An idempotent resource-oriented REST API configured at runtime according to JSON Schema
+* Data modelling using JSON Schema
 * Structured storage of JSON Documents according to schemas
 * Link data with another
-* An idempotent resource-oriented REST API configured at runtime according to JSON Schema
 * Write links even before the data you are linking to, has been created
 * Time-based versioning (live time machine)
 * Provider based persistence storage capability
@@ -24,12 +28,12 @@ image::images/lds-module-graph.svg[modules]
 
 == How it works
 
-LDS requires JSON Schemas to be configured. Please refer to
+Please refer to
 ifdef::env-github[]
 link:examples.adoc#example-json-schema[JSON Schema]
 endif::[]
 ifndef::env-github[]
 <<example-json-schema>>
 endif::[]
-examples section for a complete example on how to use.
+examples section on how to use.
 
