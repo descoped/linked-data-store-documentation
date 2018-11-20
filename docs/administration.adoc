@@ -50,7 +50,7 @@ The persistence providers share a common configuration declared in the `linked-d
 |Default URI namespace prefix
 
 |specification.schema
-|empty
+|(empty)
 |Location of where LDS reads its schemas. Inside docker images the default is /schema
 
 |===
