@@ -116,3 +116,13 @@ Ping URL: `http://localhost:9090/ping`
 Please refer to each persistence provider for custom configuration.
 ====
 
+
+ifndef::env-github[]
+== Java Server Bootstrap
+
+[source,java,linenums,options="nowrap"]
+----
+include::source/Server.java[]
+----
+endif::[]
+
