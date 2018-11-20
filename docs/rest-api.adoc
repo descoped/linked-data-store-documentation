@@ -133,7 +133,7 @@ _Create_ or _Overwrite_ a managed resource.
 ! 201
 ! Resource Created
 ! 200
-! Resource Overwriten
+! Resource Overwritten
 ! 400
 ! Bad request
 ! 404
@@ -198,8 +198,11 @@ _Create_ or _Overwrite_ an embedded resource.
 [cols="h,5a"]
 |===
 | PUT
-| <1> /ns/ManagedResource/[id]/EmbeddedProperty
-<2> /ns/ManagedResource/[id]/EmbeddedProperty[/NestedPropery]
+| [source,text]
+----
+/ns/ManagedResource/[id]/EmbeddedProperty <1>
+/ns/ManagedResource/[id]/EmbeddedProperty[/NestedPropery] <2>
+----
 | Request Body
 | [source,json]
 ----
@@ -217,7 +220,7 @@ value // <2>
 ! 201
 ! Resource Created
 ! 200
-! Resource Overwriten
+! Resource Overwritten
 ! 400
 ! Bad request
 ! 404
@@ -243,6 +246,81 @@ _Delete_ a embedded resource.
 ! Resource deleted
 ! 400
 ! Something went wrong
+! 404
+! Resource not found
+!===
+|===
+
+
+== Linked resource
+
+A linked resource maintains a list of uri to other managed resources.
+
+=== Read
+
+_Read_ links in a linked resource.
+
+[cols="h,5a"]
+|===
+| GET
+| /ns/ManagedResource/[id]/LinkedResource
+| Request Body
+| N/A
+| Response codes
+| [cols="h,2"]
+!===
+! 200
+! Resource found
+! 404
+! Resource not found
+!===
+|===
+
+
+=== Write
+
+_Create_ a linked resource that points a managed resource.
+
+[NOTE]
+====
+If the resource that is being linked to does NOT exist, the link will be created. However, it will return 404 not found if you try to retrive the link.
+====
+
+[cols="h,5a"]
+|===
+| PUT
+| /ns/ManagedResource/[id]/LinkedResource/ManagedResource/[id]
+| Request Body
+| N/A
+
+| Response codes
+| [cols="h,2"]
+!===
+! 201
+! Resource Created
+! 200
+! Resource Overwritten
+! 404
+! Resource not found
+!===
+|===
+
+
+=== Delete
+
+_Delete_ a linked resource.
+
+[cols="h,5a"]
+|===
+| DELETE
+| /ns/ManagedResource/[id]/LinkedResource/ManagedResource/[id]
+| Request Body
+| N/A
+| Response codes
+| [cols="h,2"]
+!===
+! 200
+! Resource deleted
 ! 404
 ! Resource not found
 !===
