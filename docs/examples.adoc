@@ -12,6 +12,7 @@ ifdef::env-github[]
 :toc-placement: preamble
 endif::[]
 
+[#example-json-schema]
 == JSON Schema
 
 The first step with LDS is to define your JSON Schemas. Here is a simple Person -> Address example. Start by creating a SCHEMA_FOLDER directory.

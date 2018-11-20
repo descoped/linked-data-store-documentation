@@ -18,16 +18,18 @@ endif::[]
 ** Chose between: PostgreSQL, Neo4j, FoundationDb or BigTable
 
 
-== Design
+== Overview
 
-TBD
+image::images/lds-module-graph.svg[modules]
 
 == How it works
 
-* Configured JsonSchema
-** (link to schema)
-* Offer a common REST API
-* Managed resources
-* Embedded resources
-* Linked data resources
+LDS requires JSON Schemas to be configured. Please refer to
+ifdef::env-github[]
+link:examples.adoc#example-json-schema[JSON Schema]
+endif::[]
+ifndef::env-github[]
+<<example-json-schema>>
+endif::[]
+examples section for a complete example on how to use.
 
