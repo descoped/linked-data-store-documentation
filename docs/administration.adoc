@@ -45,6 +45,11 @@ The persistence providers share a common configuration located at `linked-data-s
 |9090
 |Binds default IP port
 
+|graphql.enabled
+|false
+|Enables the GraphQL API
+
+
 |http.cors.allow.origin
 |*
 |Constrain what hosts should have access to the web server

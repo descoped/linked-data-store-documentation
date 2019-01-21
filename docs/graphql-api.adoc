@@ -1,0 +1,115 @@
+= GraphQL API
+
+ifndef::env-github[]
+:source-highlighter: coderay
+:coderay-linenums-mode: inline
+:coderay-css: class
+:icons: font
+endif::[]
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:toc-placement: preamble
+endif::[]
+
+== Overview
+
+The core module supports a GraphQL API. The API follows the recommendations
+from https://graphql.org/learn/serving-over-http[the GraphQl specification]. For convenience the core
+module also serves the in-broswer IDE graphiql at the endpoint `graphiql`.
+
+== Configuration
+
+To enable the GraphQL endpoint use the following configuration
+
+```
+graphql.enabled=true
+```
+
+== Usage
+
+Start the server and open the graphiql IDE
+(at http://localhost:9090/graphiql by default). The graphiql is setup to talk
+to the running instance of LDS.
+
+== GraphQL Schema
+
+When GraphQL is enabled, LDS will convert the JSON Schemas to a GraphQL
+schema.
+
+Using the same examples as in the link:examples.adoc[examples] the resulting GraphQL schema
+will be as follow:
+
+[source,graphql,linenums]
+----
+type Person {
+  name: String
+  addresses(after: String, before: String,
+    first: Int, last: Int): PersonAddressConnection
+}
+
+type Address {
+  street: String
+  city: String
+}
+
+# [...]
+
+type Query {
+  Person(after: String, before: String,
+             first: Int, last: Int): PersonConnection
+  Address(after: String, before: String,
+              first: Int, last: Int): AddressConnection
+}
+
+----
+
+A GraphQL type is defined for each JSON Schema definition as well as a Query
+field for the type.
+
+Relations are wrapped in connection Type (See next section).
+
+== Pagination
+
+The relations and Query fields are wrapped in Connection types as defined
+in the https://facebook.github.io/relay/graphql/connections.htm[Relay Cursor Connections Specification].
+
+[source,graphql,linenums]
+----
+
+type PersonConnection {
+  edges: [PersonEdge]
+  pageInfo: PageInfo
+}
+
+type PersonAddressConnection {
+  edges: [PersonEdge]
+  pageInfo: PageInfo
+}
+
+type PersonEdge {
+  node: Address
+  cursor: String
+}
+----
+
+== Time versioning
+
+The GraphQL support time versioning. As for the REST API, the desired version
+is represented by a timestamp parameter. The timestamp value must be encoded
+as https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations[ISO-8601]
+combined date and time format.
+
+Missing parameter or malformed values will result in using the server
+current time (ie, latest version).
+
+One can either
+
+* Send a http query parameter `timestamp` along with the graphql request.
+* Add a `__timestamp` variable in the graphql request.
+
+The query parameter takes precedence over the graphql variable.
