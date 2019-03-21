@@ -37,6 +37,14 @@ The persistence providers share a common configuration located at `linked-data-s
 |===
 |Key |Default value |Description
 
+|graphql.enabled
+|false
+|Enables the GraphQL API
+
+|graphql.search.enabled
+|false
+|Enables search capability in the GraphQL schema. This requires `search.index.provider` to be set.
+
 |http.host
 |0.0.0.0
 |Binds default loopback and private IP
@@ -44,11 +52,6 @@ The persistence providers share a common configuration located at `linked-data-s
 |http.port
 |9090
 |Binds default IP port
-
-|graphql.enabled
-|false
-|Enables the GraphQL API
-
 
 |http.cors.allow.origin
 |*

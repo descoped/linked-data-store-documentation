@@ -113,3 +113,56 @@ One can either
 * Add a `__timestamp` variable in the graphql request.
 
 The query parameter takes precedence over the graphql variable.
+
+== Search queries
+
+Additional search capabilities can be enabled with the following configuration:
+```
+graphql.search.enabled=true
+```
+
+This will enable a search method and a corresponding search result type that
+is exemplified in https://graphql.github.io/learn/schema/#union-types[the GraphQl specification].
+The resulting GraphQL schema will be as follows:
+
+[source,graphql,linenums]
+----
+type SearchResultConnection {
+  edges: [SearchResult]
+  pageInfo: PageInfo
+}
+
+# Several union types may be listed here...
+union SearchResult = Agent | AgentInRole | AttributeComponent | ComponentRelationship # [...]
+
+# [...]
+
+type Query {
+  Search(query: String!): SearchResultConnection
+}
+
+----
+
+When you query a field that returns the `SearchResult` union type, you need to use a conditional fragment
+to be able to query the fields of each type:
+[source,graphql,linenums]
+----
+{
+  search(query: "test") {
+    __typename
+    ... on Agent {
+      administrativeStatus
+    }
+    ... on AgentInRole {
+      name {
+        languageText
+      }
+    }
+    ... on AttributeComponent {
+      name {
+        languageText
+      }
+    }
+  }
+}
+----
