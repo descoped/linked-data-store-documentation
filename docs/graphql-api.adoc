@@ -147,7 +147,7 @@ type Query {
 ----
 
 When you query a field that returns the `SearchResult` union type, you need to use a conditional fragment
-(`__typename ... on`) to be able to query the fields of each type:
+(`... on TypeName`) to be able to query the fields of each type:
 [source,graphql,linenums]
 ----
 {
