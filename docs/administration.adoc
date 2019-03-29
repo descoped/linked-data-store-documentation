@@ -159,5 +159,14 @@ The persistence providers share a common configuration located at `linked-data-s
 
 |===
 
+=== Solr Search Index Provider
+.Configuration properties
+|===
+|Key |Example value|Description
+|search.index.url
+|http://localhost:8983/solr/lds_index
+|Full url to Solr index
+|===
+
 
 
