@@ -53,6 +53,14 @@ The persistence providers share a common configuration located at `linked-data-s
 |9090
 |Binds default IP port
 
+|http.prefix
+|/
+|Path prefix
+
+|http.request.dump
+|false
+|Prints requests on the INFO log
+
 |http.cors.allow.origin
 |*
 |Constrain what hosts should have access to the web server
