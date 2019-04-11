@@ -130,6 +130,15 @@ The resulting GraphQL schema will be as follows:
 # Several union types may be listed here...
 union SearchResult = Agent | AgentInRole | AttributeComponent | ComponentRelationship # [...]
 
+# This should correcpond to the union types listed above
+enum TypeFilters {
+  Agent
+  AgentInRole
+  AttributeComponent
+  ComponentRelationship
+  # ...
+}
+
 type SearchResultConnection {
   edges: [SearchResultEdge]
   pageInfo: PageInfo
@@ -141,17 +150,18 @@ type SearchResultEdge {
 }
 
 type Query {
-  Search(query: String!, after: String, before: String, first: Int, last: Int): SearchResultConnection
+  Search(after: String, before: String, filter: [TypeFilters], first: Int, last: Int, query: String!): SearchResultConnection
 }
 
 ----
 
 When you query a field that returns the `SearchResult` union type, you need to use a conditional fragment
-(`... on TypeName`) to be able to query the fields of each type:
+(`... on TypeName`) to be able to query the fields of each type. Also, the result types can be filtered up-front
+with the `filter` argument:
 [source,graphql,linenums]
 ----
 {
-  Search(query: "test") {
+  Search(query: "test", filter: [Agent, AgentInRole, AttributeComponent])) {
     edges {
       node {
         __typename
@@ -173,3 +183,4 @@ When you query a field that returns the `SearchResult` union type, you need to u
   }
 }
 ----
+
