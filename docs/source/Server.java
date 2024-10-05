@@ -1,8 +1,8 @@
-package no.ssb.lds.server;
+package io.descoped.lds.server;
 
-import no.ssb.config.DynamicConfiguration;
-import no.ssb.config.StoreBasedDynamicConfiguration;
-import no.ssb.lds.core.UndertowApplication;
+import io.descoped.config.DynamicConfiguration;
+import io.descoped.config.StoreBasedDynamicConfiguration;
+import io.descoped.lds.core.UndertowApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
