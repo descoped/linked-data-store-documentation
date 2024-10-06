@@ -92,7 +92,8 @@ Git projects are prefixed `linked-data-store-`.
 
 Open and import `linked-data-store-project`.
 
-All `linked-data-store-docker-`(provider) is structured similarly. To run the server navigate to `no.ssb.lds.server` and run `Server`.
+All `linked-data-store-docker-`(provider) is structured similarly.
+To run the server navigate to `io.descoped.lds.server` and run `Server`.
 
 Ping URL: `http://localhost:9090/ping`
 
